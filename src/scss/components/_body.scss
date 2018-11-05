@@ -1,0 +1,29 @@
+.outerWrap {
+  background-color: $redClay;
+  min-height: 100vh;
+}
+
+.header--page {
+  background-color: #000;
+
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+.title--page {
+  color: #FFF;
+  text-align: center;
+  font-size: 4rem;
+  font-family: 'Baloo Paaji', sans-serif;
+  font-weight: normal;
+  padding: 0.5em 0;
+  margin: 0;
+}
+
+.nav-menu {
+  padding: 1em;
+  float: left;
+}
