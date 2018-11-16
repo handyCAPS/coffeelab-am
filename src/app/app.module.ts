@@ -8,7 +8,9 @@ import { AppComponent } from './app.component';
 import {
   MatMenuModule,
   MatButtonModule,
-  MatIconModule
+  MatIconModule,
+  MatCardModule,
+  MatListModule
 } from '@angular/material';
 import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
 
@@ -20,7 +22,9 @@ import { CoffeeItemComponent } from './components/coffee-item/coffee-item.compon
     BrowserAnimationsModule,
     MatMenuModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

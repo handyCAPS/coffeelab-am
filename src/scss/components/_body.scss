@@ -1,5 +1,5 @@
 .outerWrap {
-  // background-color: $redClay;
+  background-color: #f2f2f2;
   min-height: 100vh;
 }
 
@@ -24,6 +24,11 @@
 }
 
 .nav-menu {
-  padding: 1em;
-  float: left;
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+}
+
+.innerWrap {
+  padding: 2rem;
 }

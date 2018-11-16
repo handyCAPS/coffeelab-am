@@ -1,3 +1,4 @@
+import { Coffee } from './../../interfaces/coffee.interface';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coffee-item.component.scss']
 })
 export class CoffeeItemComponent implements OnInit {
+  coffees: Coffee[];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    this.coffees = [
+      {
+        id: 'none',
+        name: 'Baristas Choice',
+        store: 'Kaldi Gouda',
+        rating: 4,
+        dateAdded: new Date().toISOString()
+      },
+      {
+        id: 'none2',
+        name: 'Corazon Espresso Bio',
+        store: 'Simon Levelt',
+        rating: 3,
+        dateAdded: new Date().toISOString()
+      }
+    ];
   }
 
+  ngOnInit() {}
 }

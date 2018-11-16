@@ -4,5 +4,5 @@ export class Coffee {
   store: string;
   rating: number;
   dateAdded: string;
-  dateAltered: string;
+  dateAltered?: string;
 }
