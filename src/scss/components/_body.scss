@@ -1,10 +1,10 @@
 .outerWrap {
-  background-color: $redClay;
+  // background-color: $redClay;
   min-height: 100vh;
 }
 
 .header--page {
-  background-color: #000;
+  // background-color: #000;
 
   &::after {
     content: '';
@@ -14,7 +14,7 @@
 }
 
 .title--page {
-  color: #FFF;
+  // color: #FFF;
   text-align: center;
   font-size: 4rem;
   font-family: 'Baloo Paaji', sans-serif;

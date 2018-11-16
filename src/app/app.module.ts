@@ -5,17 +5,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
+import {
+  MatMenuModule,
+  MatButtonModule,
+  MatIconModule
+} from '@angular/material';
+import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CoffeeItemComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
