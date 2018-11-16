@@ -6,7 +6,7 @@
         Menu
       </button>
       <mat-menu #appMenu="matMenu">
-        <button mat-menu-item>Home</button>
+        <button mat-menu-item *ngFor="let path of paths" [routerLink]="path.path" routerLinkActive="router-link-active" >{{ path.name }}</button>
       </mat-menu>
     </div>
     <h1 class="title title--page">{{ title }}</h1>
