@@ -14,9 +14,10 @@ import {
 } from '@angular/material';
 import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 import { CoffeeService } from './services/coffee.service';
+import { CoffeeDetailComponent } from './coffee-detail/coffee-detail.component';
 
 @NgModule({
-  declarations: [AppComponent, CoffeePageComponent],
+  declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

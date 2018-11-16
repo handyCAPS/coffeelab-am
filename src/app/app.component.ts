@@ -15,9 +15,11 @@ export class AppComponent {
   }
 
   buildRoutes() {
-    this.paths = routes.map(route => ({
-      path: route.path,
-      name: route.path[0].toUpperCase() + route.path.slice(1)
-    }));
+    this.paths = routes
+      .map(route => ({
+        path: route.path,
+        name: route.path[0].toUpperCase() + route.path.slice(1)
+      }))
+      .filter(route => !/\/:/.test(route.path));
   }
 }
