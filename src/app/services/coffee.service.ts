@@ -29,11 +29,11 @@ export class CoffeeService {
   }
 
   getCoffeeById(id: string): Coffee {
-    return this.coffees.reduce((p, c) => {
-      if (c.id === id) {
-        return { ...c };
+    return this.coffees.reduce((emptyCoffee, coffeeItem) => {
+      if (coffeeItem.id === id) {
+        return { ...coffeeItem };
       }
-      return p;
+      return emptyCoffee;
     }, new Coffee());
   }
 }
