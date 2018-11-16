@@ -1,12 +1,12 @@
-import { Coffee } from './../../interfaces/coffee.interface';
+import { Coffee } from '../../interfaces/coffee.interface';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-coffee-item',
-  templateUrl: './coffee-item.component.html',
-  styleUrls: ['./coffee-item.component.scss']
+  selector: 'app-coffee-page',
+  templateUrl: './coffee-page.component.html',
+  styleUrls: ['./coffee-page.component.scss']
 })
-export class CoffeeItemComponent implements OnInit {
+export class CoffeePageComponent implements OnInit {
   coffees: Coffee[];
 
   constructor() {

@@ -12,10 +12,10 @@ import {
   MatCardModule,
   MatListModule
 } from '@angular/material';
-import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
+import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 
 @NgModule({
-  declarations: [AppComponent, CoffeeItemComponent],
+  declarations: [AppComponent, CoffeePageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

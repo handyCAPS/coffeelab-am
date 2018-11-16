@@ -1,9 +1,9 @@
-import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
+import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
   {
     path: 'coffee',
-    component: CoffeeItemComponent
+    component: CoffeePageComponent
   }
 ];

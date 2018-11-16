@@ -1,4 +1,4 @@
-import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
+import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
