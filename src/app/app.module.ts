@@ -13,6 +13,7 @@ import {
   MatListModule
 } from '@angular/material';
 import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
+import { CoffeeService } from './services/coffee.service';
 
 @NgModule({
   declarations: [AppComponent, CoffeePageComponent],
@@ -26,7 +27,9 @@ import { CoffeePageComponent } from './components/coffee-page/coffee-page.compon
     MatCardModule,
     MatListModule
   ],
-  providers: [],
+  providers: [
+    CoffeeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

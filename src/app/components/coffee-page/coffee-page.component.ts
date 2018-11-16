@@ -1,3 +1,4 @@
+import { CoffeeService } from './../../services/coffee.service';
 import { Coffee } from '../../interfaces/coffee.interface';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,23 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class CoffeePageComponent implements OnInit {
   coffees: Coffee[];
 
-  constructor() {
-    this.coffees = [
-      {
-        id: 'none',
-        name: 'Baristas Choice',
-        store: 'Kaldi Gouda',
-        rating: 4,
-        dateAdded: new Date().toISOString()
-      },
-      {
-        id: 'none2',
-        name: 'Corazon Espresso Bio',
-        store: 'Simon Levelt',
-        rating: 3,
-        dateAdded: new Date().toISOString()
-      }
-    ];
+  constructor(private coffeeService: CoffeeService) {
+    this.coffees = this.coffeeService.getCoffees();
   }
 
   ngOnInit() {}
