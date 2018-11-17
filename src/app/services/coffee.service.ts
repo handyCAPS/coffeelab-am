@@ -36,4 +36,22 @@ export class CoffeeService {
       return emptyCoffee;
     }, new Coffee());
   }
+
+  addCoffee(newCoffee: Coffee): number {
+    return this.coffees.push(newCoffee);
+  }
+
+  editCoffee(coffeeId: string, key: string, newValue: any): Coffee[] {
+    const newState = this.coffees.reduce((prev: Coffee[], curr: Coffee) => {
+      if (curr.id !== coffeeId) {
+        prev.push(curr);
+        return prev;
+      }
+      curr[key] = newValue;
+      prev.push({...curr});
+      return prev;
+    }, []);
+    this.coffees = newState;
+    return newState;
+  }
 }

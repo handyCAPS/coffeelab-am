@@ -5,11 +5,23 @@
         <mat-card-title>{{ coffee.name }}</mat-card-title>
         <mat-card-subtitle>{{ coffee.store }}</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-      {{ coffee.rating }}
-      </mat-card-content>
+      <mat-card-content> {{ coffee.rating }} </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="accent" [routerLink]="coffee.id" routerLinkActive="router-link-active" >Bekijk</button>
+        <button
+          mat-mini-fab
+          color="primary"
+          (click)="updateCoffeeScore(coffee.id)"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+        <button
+          mat-raised-button
+          color="accent"
+          [routerLink]="coffee.id"
+          routerLinkActive="router-link-active"
+        >
+          Bekijk
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -20,11 +32,20 @@
       </mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item *ngFor="let cof of coffees">{{ cof.name }}</mat-list-item>
+          <mat-list-item *ngFor="let cof of coffees">{{
+            cof.name
+          }}</mat-list-item>
         </mat-list>
       </mat-card-content>
       <mat-card-actions>
-        <button class="add-coffee-button" mat-fab color="primary"><mat-icon>add</mat-icon></button>
+        <button
+          class="add-coffee-button"
+          mat-fab
+          color="primary"
+          (click)="addCoffee()"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
       </mat-card-actions>
     </mat-card>
   </div>
