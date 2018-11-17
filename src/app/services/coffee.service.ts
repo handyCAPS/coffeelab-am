@@ -14,7 +14,7 @@ export class CoffeeService {
       dateAdded: new Date().toISOString()
     },
     {
-      id: 'none2',
+      id: 'none1',
       name: 'Corazon Espresso Bio',
       store: 'Simon Levelt',
       rating: 3,
