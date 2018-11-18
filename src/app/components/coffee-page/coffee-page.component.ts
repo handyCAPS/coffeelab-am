@@ -17,16 +17,18 @@ export class CoffeePageComponent implements OnInit {
   ngOnInit() {}
 
   addCoffee() {
-    console.log(this.coffeeService.addCoffee({
-      id: 'three',
-      name: 'Huile Supremo',
-      store: 'Simon Levelt',
-      rating: 2,
-      dateAdded: new Date().toISOString()
-    }));
+    console.log(
+      this.coffeeService.addCoffee({
+        id: 'three',
+        name: 'Huile Supremo',
+        store: 'Simon Levelt',
+        rating: 2,
+        dateAdded: new Date().toISOString()
+      })
+    );
   }
 
-  updateCoffeeScore(coffeeId: string) {
+  updateCoffeeScore(coffeeId: string, updateTo: 'up' | 'down') {
     let currentRating;
     this.coffees.some((coffee: Coffee) => {
       if (coffee.id === coffeeId) {
@@ -35,7 +37,10 @@ export class CoffeePageComponent implements OnInit {
       }
       return false;
     });
-    const newRating = currentRating + 1;
+    const newRating =
+      updateTo === 'up'
+        ? Math.min(currentRating + 1, 5)
+        : Math.max(currentRating - 1, 0);
     this.coffees = this.coffeeService.editCoffee(coffeeId, 'rating', newRating);
   }
 }

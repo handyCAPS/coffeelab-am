@@ -10,9 +10,16 @@
         <button
           mat-mini-fab
           color="primary"
-          (click)="updateCoffeeScore(coffee.id)"
+          (click)="updateCoffeeScore(coffee.id, 'up')"
         >
           <mat-icon>add</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          color="primary"
+          (click)="updateCoffeeScore(coffee.id, 'down')"
+        >
+          <mat-icon>remove</mat-icon>
         </button>
         <button
           mat-raised-button
