@@ -10,7 +10,8 @@ import {
   MatButtonModule,
   MatIconModule,
   MatCardModule,
-  MatListModule
+  MatListModule,
+  MatDialogModule
 } from '@angular/material';
 import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 import { CoffeeService } from './services/coffee.service';
@@ -27,11 +28,13 @@ import { CoffeeFormComponent } from './components/coffee-form/coffee-form.compon
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatListModule
+    MatListModule,
+    MatDialogModule
   ],
   providers: [
     CoffeeService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CoffeeFormComponent]
 })
 export class AppModule {}

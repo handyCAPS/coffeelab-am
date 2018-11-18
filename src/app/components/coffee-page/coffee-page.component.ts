@@ -1,6 +1,9 @@
+import { CoffeeFormComponent } from './../coffee-form/coffee-form.component';
 import { CoffeeService } from './../../services/coffee.service';
 import { Coffee } from '../../interfaces/coffee.interface';
 import { Component, OnInit } from '@angular/core';
+
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-coffee-page',
@@ -10,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
 export class CoffeePageComponent implements OnInit {
   coffees: Coffee[];
 
-  constructor(private coffeeService: CoffeeService) {
+  constructor(private coffeeService: CoffeeService, public dialog: MatDialog) {
     this.coffees = this.coffeeService.getCoffees();
   }
 
@@ -42,5 +45,11 @@ export class CoffeePageComponent implements OnInit {
         ? Math.min(currentRating + 1, 5)
         : Math.max(currentRating - 1, 0);
     this.coffees = this.coffeeService.editCoffee(coffeeId, 'rating', newRating);
+  }
+
+  openCoffeeForm() {
+    const dialogRef = this.dialog.open(CoffeeFormComponent, {
+      width: '30rem'
+    });
   }
 }
