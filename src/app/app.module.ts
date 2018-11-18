@@ -15,9 +15,10 @@ import {
 import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 import { CoffeeService } from './services/coffee.service';
 import { CoffeeDetailComponent } from './coffee-detail/coffee-detail.component';
+import { CoffeeFormComponent } from './components/coffee-form/coffee-form.component';
 
 @NgModule({
-  declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent],
+  declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent, CoffeeFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
