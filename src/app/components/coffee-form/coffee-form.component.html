@@ -1,3 +1,26 @@
-<p>
-  coffee-form works!
-</p>
+<form class="coffee-form" #coffeeForm="ngForm" (submit)="handleFormSubmit()">
+  <div class="coffee-form-inputs">
+    <mat-form-field appearance="standard">
+      <input matInput placeholder="Naam" name="name" [(ngModel)]="model.name" />
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <input
+        matInput
+        placeholder="Winkel"
+        name="store"
+        [(ngModel)]="model.store"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <input
+        matInput
+        placeholder="Score"
+        name="rating"
+        [(ngModel)]="model.rating"
+      />
+    </mat-form-field>
+  </div>
+  <footer class="coffee-form-footer">
+    <button mat-raised-button>Koffie!</button>
+  </footer>
+</form>

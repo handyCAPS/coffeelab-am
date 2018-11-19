@@ -11,12 +11,15 @@ import {
   MatIconModule,
   MatCardModule,
   MatListModule,
-  MatDialogModule
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule
 } from '@angular/material';
 import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 import { CoffeeService } from './services/coffee.service';
 import { CoffeeDetailComponent } from './coffee-detail/coffee-detail.component';
 import { CoffeeFormComponent } from './components/coffee-form/coffee-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent, CoffeeFormComponent],
@@ -24,12 +27,15 @@ import { CoffeeFormComponent } from './components/coffee-form/coffee-form.compon
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     CoffeeService
