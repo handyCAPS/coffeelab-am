@@ -18,7 +18,7 @@ export class AppComponent {
     this.paths = routes
       .map(route => ({
         path: route.path,
-        name: route.path[0].toUpperCase() + route.path.slice(1)
+        name: route.path.length ? route.path[0].toUpperCase() + route.path.slice(1) : 'Home'
       }))
       .filter(route => !/\/:/.test(route.path));
   }
