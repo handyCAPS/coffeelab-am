@@ -49,7 +49,7 @@
           class="add-coffee-button"
           mat-fab
           color="primary"
-          (click)="openCoffeeForm()"
+          (click)="addCoffee()"
         >
           <mat-icon>add</mat-icon>
         </button>
@@ -57,3 +57,7 @@
     </mat-card>
   </div>
 </div>
+
+<mat-list>
+  <mat-list-item *ngFor="let item of stuff">{{ item | json }}</mat-list-item>
+</mat-list>

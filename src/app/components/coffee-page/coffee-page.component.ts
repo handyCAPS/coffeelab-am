@@ -1,9 +1,14 @@
+import { hasOwn } from './../../helpers';
 import { CoffeeFormComponent } from './../coffee-form/coffee-form.component';
 import { CoffeeService } from './../../services/coffee.service';
 import { Coffee } from '../../interfaces/coffee.interface';
 import { Component, OnInit } from '@angular/core';
 
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { AngularFireDatabase } from '@angular/fire/database';
+
+import { Observable } from 'rxjs';
+import { DatabaseReference } from '@angular/fire/database/interfaces';
 
 @Component({
   selector: 'app-coffee-page',
@@ -13,21 +18,42 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class CoffeePageComponent implements OnInit {
   coffees: Coffee[];
 
-  constructor(private coffeeService: CoffeeService, public dialog: MatDialog) {
+  stuff = [];
+
+  coffeeRef: DatabaseReference;
+
+  constructor(
+    private coffeeService: CoffeeService,
+    public dialog: MatDialog,
+    private db: AngularFireDatabase
+  ) {
     this.coffees = this.coffeeService.getCoffees();
+    this.coffeeRef = this.db.database.ref('coffee');
+    this.coffeeRef.on('value', snapshot => {
+      const value = snapshot.val();
+      const tempArray = [];
+      for (const item in value) {
+        if (hasOwn(value, item)) {
+          tempArray.push(value[item]);
+        }
+      }
+      this.coffees = tempArray;
+      console.log('value', this.stuff);
+    });
+    // this.stuff = this.db.list('coffee').valueChanges();
   }
 
   ngOnInit() {}
 
   addCoffee() {
-    console.log(
-      this.coffeeService.addCoffee({
-        id: 'three',
-        name: 'Huile Supremo',
-        store: 'Simon Levelt',
-        rating: 2,
+    this.db.database.ref('coffee').push(
+      {
+        id: 'four',
+        name: 'Barista\'s Choice',
+        store: 'Kaldi',
+        rating: 4,
         dateAdded: new Date().toISOString()
-      })
+      }
     );
   }
 
