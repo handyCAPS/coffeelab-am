@@ -5,7 +5,12 @@
         <mat-card-title>{{ coffee.name }}</mat-card-title>
         <mat-card-subtitle>{{ coffee.store }}</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content> {{ coffee.rating }} </mat-card-content>
+      <mat-card-content>
+        {{ coffee.rating }}
+        <span class="coffee-date">{{
+          coffee.dateAdded | date: 'dd-MM-yyy'
+        }}</span></mat-card-content
+      >
       <mat-card-actions class="coffee-actions">
         <button
           mat-mini-fab
@@ -29,6 +34,7 @@
         >
           Bekijk
         </button>
+        <button mat-raised-button color="warn" (click)="removeCoffee(coffee.id)">Verwijder</button>
       </mat-card-actions>
     </mat-card>
   </div>
@@ -39,9 +45,9 @@
       </mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item *ngFor="let cof of coffees">{{
-            cof.name
-          }}</mat-list-item>
+          <mat-list-item *ngFor="let cof of coffees">
+            {{ cof.name }}
+          </mat-list-item>
         </mat-list>
       </mat-card-content>
       <mat-card-actions>

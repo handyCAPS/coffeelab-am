@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Coffee } from './../../interfaces/coffee.interface';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -11,6 +12,7 @@ export class CoffeeFormComponent implements OnInit {
   model: Coffee;
 
   constructor(
+    private db: AngularFireDatabase,
     public dialogRef: MatDialogRef<CoffeeFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data
   ) {
@@ -20,6 +22,15 @@ export class CoffeeFormComponent implements OnInit {
   ngOnInit() {}
 
   handleFormSubmit() {
-    console.log(this.model);
+    const newCoffee: Coffee = {
+      ...this.model,
+      dateAdded: new Date().toISOString()
+    };
+    this.db.database
+      .ref('coffee')
+      .push(newCoffee)
+      .then(() => {
+        this.dialogRef.close();
+      });
   }
 }

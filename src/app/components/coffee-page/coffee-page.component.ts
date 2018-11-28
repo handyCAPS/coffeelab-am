@@ -27,14 +27,15 @@ export class CoffeePageComponent implements OnInit {
     public dialog: MatDialog,
     private db: AngularFireDatabase
   ) {
-    this.coffees = this.coffeeService.getCoffees();
+    // this.coffees = this.coffeeService.getCoffees();
     this.coffeeRef = this.db.database.ref('coffee');
     this.coffeeRef.on('value', snapshot => {
       const value = snapshot.val();
       const tempArray = [];
       for (const item in value) {
         if (hasOwn(value, item)) {
-          tempArray.push(value[item]);
+          const newCoffee = { ...value[item], id: item };
+          tempArray.push(newCoffee);
         }
       }
       this.coffees = tempArray;
@@ -43,16 +44,12 @@ export class CoffeePageComponent implements OnInit {
 
   ngOnInit() {}
 
-  addCoffee() {
-    this.db.database.ref('coffee').push(
-      {
-        id: 'four',
-        name: 'Barista\'s Choice',
-        store: 'Kaldi',
-        rating: 4,
-        dateAdded: new Date().toISOString()
-      }
-    );
+  addCoffee(newCoffee: Coffee) {
+    this.db.database.ref('coffee').push(newCoffee);
+  }
+
+  removeCoffee(coffeeId: string): void {
+    this.db.database.ref('coffee/' + coffeeId).remove();
   }
 
   updateCoffeeScore(coffeeId: string, updateTo: 'up' | 'down') {
