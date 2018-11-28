@@ -1,3 +1,4 @@
+import { DatabaseReference } from '@angular/fire/database/interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Coffee } from './../../interfaces/coffee.interface';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -10,6 +11,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class CoffeeFormComponent implements OnInit {
   model: Coffee;
+  coffeeRef: DatabaseReference;
 
   constructor(
     private db: AngularFireDatabase,
@@ -17,6 +19,7 @@ export class CoffeeFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data
   ) {
     this.model = new Coffee();
+    this.coffeeRef = this.db.database.ref('coffee');
   }
 
   ngOnInit() {}
@@ -26,8 +29,7 @@ export class CoffeeFormComponent implements OnInit {
       ...this.model,
       dateAdded: new Date().toISOString()
     };
-    this.db.database
-      .ref('coffee')
+    this.coffeeRef
       .push(newCoffee)
       .then(() => {
         this.dialogRef.close();
