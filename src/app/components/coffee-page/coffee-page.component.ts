@@ -38,9 +38,7 @@ export class CoffeePageComponent implements OnInit {
         }
       }
       this.coffees = tempArray;
-      console.log('value', this.stuff);
     });
-    // this.stuff = this.db.list('coffee').valueChanges();
   }
 
   ngOnInit() {}
