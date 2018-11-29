@@ -27,7 +27,8 @@ export class CoffeeFormComponent implements OnInit {
   handleFormSubmit() {
     const newCoffee: Coffee = {
       ...this.model,
-      dateAdded: new Date().toISOString()
+      dateAdded: new Date().toISOString(),
+      order: 0
     };
     this.coffeeRef
       .push(newCoffee)

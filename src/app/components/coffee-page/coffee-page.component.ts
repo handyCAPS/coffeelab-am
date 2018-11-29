@@ -38,7 +38,7 @@ export class CoffeePageComponent implements OnInit {
           tempArray.push(newCoffee);
         }
       }
-      this.coffees = tempArray;
+      this.coffees = this.getOrderedCoffees(tempArray);
     });
   }
 
@@ -72,5 +72,11 @@ export class CoffeePageComponent implements OnInit {
     const dialogRef = this.dialog.open(CoffeeFormComponent, {
       width: '30rem'
     });
+  }
+
+  getOrderedCoffees(coffees: Coffee[]): Coffee[] {
+    return coffees.sort(
+      (coffeeA: Coffee, coffeeB: Coffee) => coffeeA.order - coffeeB.order
+    );
   }
 }
