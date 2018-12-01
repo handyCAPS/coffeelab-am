@@ -15,14 +15,14 @@
         <button
           mat-mini-fab
           color="primary"
-          (click)="updateCoffeeScore(coffee.id, 'up')"
+          (click)="updateCoffeeScore(coffee.id, coffee.rating, false)"
         >
           <mat-icon>add</mat-icon>
         </button>
         <button
           mat-mini-fab
           color="primary"
-          (click)="updateCoffeeScore(coffee.id, 'down')"
+          (click)="updateCoffeeScore(coffee.id, coffee.rating, true)"
         >
           <mat-icon>remove</mat-icon>
         </button>

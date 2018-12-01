@@ -44,20 +44,24 @@ export class CoffeePageComponent implements OnInit {
     this.db.database.ref('coffee/' + coffeeId).remove();
   }
 
-  updateCoffeeScore(coffeeId: string, updateTo: 'up' | 'down') {
-    let currentRating;
-    this.coffees.some((coffee: Coffee) => {
-      if (coffee.id === coffeeId) {
-        currentRating = coffee.rating;
-        return true;
-      }
-      return false;
-    });
-    const newRating =
-      updateTo === 'up'
-        ? Math.min(currentRating + 1, 5)
-        : Math.max(currentRating - 1, 0);
-    this.coffees = this.coffeeService.editCoffee(coffeeId, 'rating', newRating);
+  // updateCoffeeScore(coffeeId: string, updateTo: 'up' | 'down') {
+  //   let currentRating;
+  //   this.coffees.some((coffee: Coffee) => {
+  //     if (coffee.id === coffeeId) {
+  //       currentRating = coffee.rating;
+  //       return true;
+  //     }
+  //     return false;
+  //   });
+  //   const newRating =
+  //     updateTo === 'up'
+  //       ? Math.min(currentRating + 1, 5)
+  //       : Math.max(currentRating - 1, 0);
+  //   this.coffees = this.coffeeService.editCoffee(coffeeId, 'rating', newRating);
+  // }
+
+  updateCoffeeScore(coffeeId: string, currentScore: number, down: boolean): void {
+    this.coffeeService.updateCoffeeScore(coffeeId, currentScore, down);
   }
 
   openCoffeeForm() {

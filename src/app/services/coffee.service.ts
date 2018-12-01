@@ -74,4 +74,18 @@ export class CoffeeService {
     this.coffees = newState;
     return newState;
   }
+
+  public updateCoffeeScore(
+    coffeeId: string,
+    currentScore: number,
+    down: boolean
+  ): void {
+    if ((down && currentScore === 0) || (!down && currentScore === 5)) {
+      return;
+    }
+    const newScore = down
+      ? currentScore - 1
+      : currentScore + 1;
+    this.coffeeRef.child(coffeeId).update({ rating: newScore });
+  }
 }
