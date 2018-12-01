@@ -1,3 +1,7 @@
+import { Observable } from 'rxjs';
+import { hasOwn } from './../helpers';
+import { DatabaseReference } from '@angular/fire/database/interfaces';
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Coffee } from './../interfaces/coffee.interface';
 import { Injectable } from '@angular/core';
 
@@ -6,8 +10,39 @@ import { Injectable } from '@angular/core';
 })
 export class CoffeeService {
   private coffees: Coffee[] = [];
+  private coffeeRef: DatabaseReference;
 
-  constructor() {}
+  constructor(private db: AngularFireDatabase) {
+    this.coffeeRef = this.db.database.ref('coffee');
+    this.coffeeRef.once(
+      'value',
+      snapshot => (this.coffees = this.wrangleCoffees(snapshot.val()))
+    );
+  }
+
+  public listenForCoffee(): Observable<Coffee[]> {
+    return Observable.create(observer => {
+      this.coffeeRef.on('value', snapshot => {
+        const coffees = snapshot.val();
+        this.coffees = this.wrangleCoffees(coffees);
+        observer.next(this.coffees);
+      });
+    });
+  }
+
+  private wrangleCoffees(coffeeObject): Coffee[] {
+    const coffeeArray = [];
+    for (const coffeeKey in coffeeObject) {
+      if (hasOwn(coffeeObject, coffeeKey)) {
+        const newCoffee: Coffee = {
+          ...coffeeObject[coffeeKey],
+          id: coffeeKey
+        };
+        coffeeArray.push(newCoffee);
+      }
+    }
+    return coffeeArray;
+  }
 
   public getCoffees(): Coffee[] {
     return this.coffees;
@@ -33,7 +68,7 @@ export class CoffeeService {
         return prev;
       }
       curr[key] = newValue;
-      prev.push({...curr});
+      prev.push({ ...curr });
       return prev;
     }, []);
     this.coffees = newState;

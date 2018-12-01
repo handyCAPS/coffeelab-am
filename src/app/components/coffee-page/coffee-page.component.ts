@@ -27,19 +27,11 @@ export class CoffeePageComponent implements OnInit {
     public dialog: MatDialog,
     private db: AngularFireDatabase
   ) {
-    // this.coffees = this.coffeeService.getCoffees();
+    this.coffees = this.coffeeService.getCoffees();
     this.coffeeRef = this.db.database.ref('coffee');
-    this.coffeeRef.on('value', snapshot => {
-      const value = snapshot.val();
-      const tempArray = [];
-      for (const item in value) {
-        if (hasOwn(value, item)) {
-          const newCoffee = { ...value[item], id: item };
-          tempArray.push(newCoffee);
-        }
-      }
-      this.coffees = this.getOrderedCoffees(tempArray);
-    });
+    this.coffeeService
+      .listenForCoffee()
+      .subscribe(value => (this.coffees = this.getOrderedCoffees(value)));
   }
 
   ngOnInit() {}
