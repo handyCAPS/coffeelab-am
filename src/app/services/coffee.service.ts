@@ -5,22 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CoffeeService {
-  private coffees: Coffee[] = [
-    {
-      id: 'none',
-      name: 'Baristas Choice',
-      store: 'Kaldi Gouda',
-      rating: 4,
-      dateAdded: new Date().toISOString()
-    },
-    {
-      id: 'none1',
-      name: 'Corazon Espresso Bio',
-      store: 'Simon Levelt',
-      rating: 3,
-      dateAdded: new Date().toISOString()
-    }
-  ];
+  private coffees: Coffee[] = [];
 
   constructor() {}
 
