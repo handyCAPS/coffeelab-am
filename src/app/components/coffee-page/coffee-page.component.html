@@ -1,3 +1,10 @@
+<div class="coffee-sorting">
+  <mat-menu #sortMenu="matMenu">
+    <button mat-menu-item (click)="sortCoffee('Rating')">Rating</button>
+    <button mat-menu-item (click)="sortCoffee('Date')">Date</button>
+  </mat-menu>
+  <button mat-icon-button [matMenuTriggerFor]="sortMenu"><mat-icon>sort</mat-icon></button>
+</div>
 <div class="coffee">
   <div class="coffee-items">
     <mat-card *ngFor="let coffee of coffees">

@@ -22,6 +22,10 @@ export class CoffeePageComponent implements OnInit {
 
   coffeeRef: DatabaseReference;
 
+  coffeeSortingPrefix = 'orderCoffeeBy';
+
+  coffeeSorting: 'Rating' | 'Date' = 'Rating';
+
   constructor(
     private coffeeService: CoffeeService,
     public dialog: MatDialog,
@@ -31,7 +35,13 @@ export class CoffeePageComponent implements OnInit {
     this.coffeeRef = this.db.database.ref('coffee');
     this.coffeeService
       .listenForCoffee()
-      .subscribe(value => (this.coffees = this.getOrderedCoffees(value)));
+      .subscribe(
+        value =>
+          (this.coffees = this.getOrderedCoffees(
+            value,
+            this[this.coffeeSortingPrefix + this.coffeeSorting]
+          ))
+      );
   }
 
   ngOnInit() {}
@@ -44,23 +54,11 @@ export class CoffeePageComponent implements OnInit {
     this.db.database.ref('coffee/' + coffeeId).remove();
   }
 
-  // updateCoffeeScore(coffeeId: string, updateTo: 'up' | 'down') {
-  //   let currentRating;
-  //   this.coffees.some((coffee: Coffee) => {
-  //     if (coffee.id === coffeeId) {
-  //       currentRating = coffee.rating;
-  //       return true;
-  //     }
-  //     return false;
-  //   });
-  //   const newRating =
-  //     updateTo === 'up'
-  //       ? Math.min(currentRating + 1, 5)
-  //       : Math.max(currentRating - 1, 0);
-  //   this.coffees = this.coffeeService.editCoffee(coffeeId, 'rating', newRating);
-  // }
-
-  updateCoffeeScore(coffeeId: string, currentScore: number, down: boolean): void {
+  updateCoffeeScore(
+    coffeeId: string,
+    currentScore: number,
+    down: boolean
+  ): void {
     this.coffeeService.updateCoffeeScore(coffeeId, currentScore, down);
   }
 
@@ -70,9 +68,26 @@ export class CoffeePageComponent implements OnInit {
     });
   }
 
-  getOrderedCoffees(coffees: Coffee[]): Coffee[] {
-    return coffees.sort(
-      (coffeeA: Coffee, coffeeB: Coffee) => coffeeA.order - coffeeB.order
+  sortCoffee(by: 'Rating' | 'Date'): void {
+    this.coffeeSorting = by;
+    this.coffees = this.getOrderedCoffees(
+      this.coffees,
+      this[this.coffeeSortingPrefix + this.coffeeSorting]
     );
+  }
+
+  public orderCoffeeByRating(coffeeA: Coffee, coffeeB: Coffee) {
+    return coffeeA.order - coffeeB.order;
+  }
+
+  public orderCoffeeByDate(coffeeA: Coffee, coffeeB: Coffee) {
+    return (
+      new Date(coffeeA.dateAdded).valueOf() -
+      new Date(coffeeB.dateAdded).valueOf()
+    );
+  }
+
+  getOrderedCoffees(coffees: Coffee[], sortingFunction): Coffee[] {
+    return coffees.sort(sortingFunction);
   }
 }
