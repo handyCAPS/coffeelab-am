@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AngularFireDatabase } from '@angular/fire/database';
 
-import { Observable } from 'rxjs';
-import { DatabaseReference } from '@angular/fire/database/interfaces';
-
+class SortingOptions {
+  options: 'Rating' | 'Date' | 'Order';
+}
 @Component({
   selector: 'app-coffee-page',
   templateUrl: './coffee-page.component.html',
@@ -20,7 +20,9 @@ export class CoffeePageComponent implements OnInit {
 
   private coffeeSortingPrefix = 'orderCoffeeBy';
 
-  private coffeeSorting: 'Rating' | 'Date' = 'Rating';
+  private coffeeSorting: SortingOptions['options'] = 'Order';
+
+  public sortingOptions: SortingOptions['options'][] = ['Rating', 'Date', 'Order'];
 
   public get sortingFunction(): string {
     return this.coffeeSortingPrefix + this.coffeeSorting;
@@ -67,7 +69,7 @@ export class CoffeePageComponent implements OnInit {
     });
   }
 
-  sortCoffee(by: 'Rating' | 'Date'): void {
+  sortCoffee(by: SortingOptions['options']): void {
     this.coffeeSorting = by;
     this.coffees = this.getOrderedCoffees(
       this.coffees,
@@ -76,6 +78,10 @@ export class CoffeePageComponent implements OnInit {
   }
 
   public orderCoffeeByRating(coffeeA: Coffee, coffeeB: Coffee) {
+    return coffeeA.rating - coffeeB.rating;
+  }
+
+  public orderCoffeeByOrder(coffeeA: Coffee, coffeeB: Coffee) {
     return coffeeA.order - coffeeB.order;
   }
 

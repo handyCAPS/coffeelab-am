@@ -1,9 +1,16 @@
 <div class="coffee-sorting">
   <mat-menu #sortMenu="matMenu">
-    <button mat-menu-item (click)="sortCoffee('Rating')">Rating</button>
-    <button mat-menu-item (click)="sortCoffee('Date')">Date</button>
+    <button
+      mat-menu-item
+      *ngFor="let option of sortingOptions"
+      (click)="sortCoffee(option)"
+    >
+      {{ option }}
+    </button>
   </mat-menu>
-  <button mat-icon-button [matMenuTriggerFor]="sortMenu"><mat-icon>sort</mat-icon></button>
+  <button mat-icon-button [matMenuTriggerFor]="sortMenu">
+    <mat-icon>sort</mat-icon>
+  </button>
 </div>
 <div class="coffee">
   <div class="coffee-items">
@@ -14,9 +21,10 @@
       </mat-card-header>
       <mat-card-content>
         {{ coffee.rating }}
-        <span class="coffee-date">{{
-          coffee.dateAdded | date: 'dd-MM-yyy'
-        }} === {{ coffee.order }}</span></mat-card-content
+        <span class="coffee-date"
+          >{{ coffee.dateAdded | date: 'dd-MM-yyy' }} ===
+          {{ coffee.order }}</span
+        ></mat-card-content
       >
       <mat-card-actions class="coffee-actions">
         <button
@@ -41,7 +49,16 @@
         >
           Bekijk
         </button>
-        <button mat-raised-button color="warn" (click)="removeCoffee(coffee.id)">Verwijder</button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="removeCoffee(coffee.id)"
+        >
+          Verwijder
+        </button>
+        <span class="grab-handle">
+          <button mat-icon-button><mat-icon>open_with</mat-icon></button>
+        </span>
       </mat-card-actions>
     </mat-card>
   </div>
