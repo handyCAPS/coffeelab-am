@@ -24,10 +24,11 @@ import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { PotFormComponent } from './components/pot-form/pot-form.component';
 
 
 @NgModule({
-  declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent, CoffeeFormComponent],
+  declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent, CoffeeFormComponent, PotFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

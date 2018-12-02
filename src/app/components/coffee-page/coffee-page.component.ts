@@ -1,3 +1,4 @@
+import { Pot } from './../../interfaces/pot.interface';
 import { hasOwn } from './../../helpers';
 import { CoffeeFormComponent } from './../coffee-form/coffee-form.component';
 import { CoffeeService } from './../../services/coffee.service';
@@ -16,13 +17,18 @@ class SortingOptions {
   styleUrls: ['./coffee-page.component.scss']
 })
 export class CoffeePageComponent implements OnInit {
-  private coffees: Coffee[];
+  private coffees: Coffee[] = [];
+  private pots: Pot[] = [{ number: 1 }];
 
   private coffeeSortingPrefix = 'orderCoffeeBy';
 
   private coffeeSorting: SortingOptions['options'] = 'Order';
 
-  public sortingOptions: SortingOptions['options'][] = ['Rating', 'Date', 'Order'];
+  public sortingOptions: SortingOptions['options'][] = [
+    'Rating',
+    'Date',
+    'Order'
+  ];
 
   public get sortingFunction(): string {
     return this.coffeeSortingPrefix + this.coffeeSorting;
