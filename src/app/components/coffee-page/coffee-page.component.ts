@@ -16,15 +16,15 @@ import { DatabaseReference } from '@angular/fire/database/interfaces';
   styleUrls: ['./coffee-page.component.scss']
 })
 export class CoffeePageComponent implements OnInit {
-  coffees: Coffee[];
+  private coffees: Coffee[];
 
-  stuff = [];
+  private coffeeSortingPrefix = 'orderCoffeeBy';
 
-  coffeeRef: DatabaseReference;
+  private coffeeSorting: 'Rating' | 'Date' = 'Rating';
 
-  coffeeSortingPrefix = 'orderCoffeeBy';
-
-  coffeeSorting: 'Rating' | 'Date' = 'Rating';
+  public get sortingFunction(): string {
+    return this.coffeeSortingPrefix + this.coffeeSorting;
+  }
 
   constructor(
     private coffeeService: CoffeeService,
@@ -32,14 +32,13 @@ export class CoffeePageComponent implements OnInit {
     private db: AngularFireDatabase
   ) {
     this.coffees = this.coffeeService.getCoffees();
-    this.coffeeRef = this.db.database.ref('coffee');
     this.coffeeService
       .listenForCoffee()
       .subscribe(
         value =>
           (this.coffees = this.getOrderedCoffees(
             value,
-            this[this.coffeeSortingPrefix + this.coffeeSorting]
+            this[this.sortingFunction]
           ))
       );
   }
@@ -72,7 +71,7 @@ export class CoffeePageComponent implements OnInit {
     this.coffeeSorting = by;
     this.coffees = this.getOrderedCoffees(
       this.coffees,
-      this[this.coffeeSortingPrefix + this.coffeeSorting]
+      this[this.sortingFunction]
     );
   }
 
