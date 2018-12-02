@@ -1,3 +1,4 @@
+import { Pot } from './../interfaces/pot.interface';
 import { Observable } from 'rxjs';
 import { hasOwn } from './../helpers';
 import { DatabaseReference } from '@angular/fire/database/interfaces';
@@ -83,9 +84,11 @@ export class CoffeeService {
     if ((down && currentScore === 0) || (!down && currentScore === 5)) {
       return;
     }
-    const newScore = down
-      ? currentScore - 1
-      : currentScore + 1;
+    const newScore = down ? currentScore - 1 : currentScore + 1;
     this.coffeeRef.child(coffeeId).update({ rating: newScore });
+  }
+
+  public addPot(pot: Pot): void {
+    this.db.database.ref('pot').push(pot);
   }
 }
