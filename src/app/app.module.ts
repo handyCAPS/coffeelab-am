@@ -18,17 +18,18 @@ import {
 } from '@angular/material';
 import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 import { CoffeeService } from './services/coffee.service';
-import { CoffeeDetailComponent } from './coffee-detail/coffee-detail.component';
+import { CoffeeDetailComponent } from './components/coffee-detail/coffee-detail.component';
 import { CoffeeFormComponent } from './components/coffee-form/coffee-form.component';
 import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { PotFormComponent } from './components/pot-form/pot-form.component';
+import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
 
 
 @NgModule({
-  declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent, CoffeeFormComponent, PotFormComponent],
+  declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent, CoffeeFormComponent, PotFormComponent, CoffeeItemComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
