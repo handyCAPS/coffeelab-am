@@ -1,5 +1,5 @@
-import { CoffeeService } from './../services/coffee.service';
-import { Coffee } from './../interfaces/coffee.interface';
+import { CoffeeService } from '../../services/coffee.service';
+import { Coffee } from '../../interfaces/coffee.interface';
 import { Component, OnInit } from '@angular/core';
 import { Route, Router, ActivatedRoute } from '@angular/router';
 

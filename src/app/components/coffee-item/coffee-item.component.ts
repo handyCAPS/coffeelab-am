@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { CoffeeService } from './../../services/coffee.service';
+import { Coffee } from './../../interfaces/coffee.interface';
+import { Component, OnInit, Input } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-coffee-item',
@@ -6,10 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coffee-item.component.scss']
 })
 export class CoffeeItemComponent implements OnInit {
+  @Input() coffee: Coffee;
 
-  constructor() { }
+  constructor(private coffeeService: CoffeeService, private db: AngularFireDatabase) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  updateCoffeeScore(
+    coffeeId: string,
+    currentScore: number,
+    down: boolean
+  ): void {
+    this.coffeeService.updateCoffeeScore(coffeeId, currentScore, down);
   }
 
+  removeCoffee(coffeeId: string): void {
+    this.db.database.ref('coffee/' + coffeeId).remove();
+  }
 }

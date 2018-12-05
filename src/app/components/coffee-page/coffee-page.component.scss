@@ -1,10 +1,10 @@
 @import '../../../scss/utilities/helpers';
 
+
 .mat-card {
   margin-bottom: 2rem;
   @extend .clearfix;
 }
-
 
 .coffee {
   display: grid;
@@ -14,28 +14,4 @@
 
 .add-coffee-button {
   float: right;
-}
-
-.coffee-actions {
-  button {
-    margin-right: 1em;
-  }
-}
-
-.coffee-date {
-  position: absolute;
-  top: 1em;
-  right: 1em;
-}
-
-.coffee-sorting {
-  margin: -2rem 0 2rem;
-}
-
-.grab-handle {
-  position: absolute;
-  bottom: 0.5em;
-  right: 0;
-  color: #C2C2C2;
-  font-size: 1.2rem;
 }
