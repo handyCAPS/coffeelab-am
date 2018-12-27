@@ -1,5 +1,7 @@
+import { Coffee } from './coffee.interface';
 export class Pot {
   id?: string;
   number: number;
-  currentCoffee?: string;
+  currentCoffee?: Coffee;
+  name?: string;
 }

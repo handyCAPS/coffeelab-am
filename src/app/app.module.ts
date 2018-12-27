@@ -1,3 +1,4 @@
+import { PotService } from './services/pot.service';
 import { environment } from './../environments/environment';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -47,7 +48,8 @@ import { CoffeeItemComponent } from './components/coffee-item/coffee-item.compon
     MatInputModule
   ],
   providers: [
-    CoffeeService
+    CoffeeService,
+    PotService
   ],
   bootstrap: [AppComponent],
   entryComponents: [CoffeeFormComponent]
