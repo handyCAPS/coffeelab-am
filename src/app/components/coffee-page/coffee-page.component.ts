@@ -1,3 +1,4 @@
+import { PotService } from './../../services/pot.service';
 import { Pot } from './../../interfaces/pot.interface';
 import { hasOwn } from './../../helpers';
 import { CoffeeFormComponent } from './../coffee-form/coffee-form.component';
@@ -37,7 +38,8 @@ export class CoffeePageComponent implements OnInit {
   constructor(
     private coffeeService: CoffeeService,
     public dialog: MatDialog,
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private potService: PotService
   ) {
     this.coffees = this.coffeeService.getCoffees();
     this.coffeeService
@@ -52,6 +54,10 @@ export class CoffeePageComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  getPots() {
+    this.potService.listenForPots().subscribe(newpots => this.pots = newpots);
+  }
 
   addCoffee(newCoffee: Coffee) {
     this.db.database.ref('coffee').push(newCoffee);
