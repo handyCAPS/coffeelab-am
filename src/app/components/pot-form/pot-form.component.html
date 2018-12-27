@@ -1,3 +1,10 @@
-<p>
-  pot-form works!
-</p>
+<div class="pot-form">
+  <form #potForm="ngForm" (submit)="handleFormSubmit($event)">
+    <mat-form-field>
+      <input matInput [(ngModel)]="pot.name" name="name" placeholder="Naam">
+    </mat-form-field>
+    <footer>
+      <button mat-raised-button color="primary">Opslaan</button>
+    </footer>
+  </form>
+</div>

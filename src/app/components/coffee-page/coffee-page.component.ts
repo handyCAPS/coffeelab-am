@@ -1,3 +1,4 @@
+import { PotFormComponent } from './../pot-form/pot-form.component';
 import { PotService } from './../../services/pot.service';
 import { Pot } from './../../interfaces/pot.interface';
 import { hasOwn } from './../../helpers';
@@ -19,7 +20,7 @@ class SortingOptions {
 })
 export class CoffeePageComponent implements OnInit {
   private coffees: Coffee[] = [];
-  private pots: Pot[] = [{ number: 1 }];
+  private pots: Pot[] = [];
 
   private coffeeSortingPrefix = 'orderCoffeeBy';
 
@@ -51,12 +52,13 @@ export class CoffeePageComponent implements OnInit {
             this[this.sortingFunction]
           ))
       );
+    this.potService.listenForPots().subscribe(pots => (this.pots = pots));
   }
 
   ngOnInit() {}
 
   getPots() {
-    this.potService.listenForPots().subscribe(newpots => this.pots = newpots);
+    this.potService.listenForPots().subscribe(newpots => (this.pots = newpots));
   }
 
   addCoffee(newCoffee: Coffee) {
@@ -94,5 +96,18 @@ export class CoffeePageComponent implements OnInit {
 
   getOrderedCoffees(coffees: Coffee[], sortingFunction): Coffee[] {
     return coffees.sort(sortingFunction);
+  }
+
+  openPotForm() {
+    this.dialog
+      .open(PotFormComponent, {
+        width: '600px'
+      })
+      .afterClosed()
+      .subscribe(hasError => {
+        if (hasError) {
+          console.error('FUCK!!!');
+        }
+      });
   }
 }

@@ -28,9 +28,15 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { PotFormComponent } from './components/pot-form/pot-form.component';
 import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
 
-
 @NgModule({
-  declarations: [AppComponent, CoffeePageComponent, CoffeeDetailComponent, CoffeeFormComponent, PotFormComponent, CoffeeItemComponent],
+  declarations: [
+    AppComponent,
+    CoffeePageComponent,
+    CoffeeDetailComponent,
+    CoffeeFormComponent,
+    PotFormComponent,
+    CoffeeItemComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,11 +53,8 @@ import { CoffeeItemComponent } from './components/coffee-item/coffee-item.compon
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [
-    CoffeeService,
-    PotService
-  ],
+  providers: [CoffeeService, PotService],
   bootstrap: [AppComponent],
-  entryComponents: [CoffeeFormComponent]
+  entryComponents: [CoffeeFormComponent, PotFormComponent]
 })
 export class AppModule {}

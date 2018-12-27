@@ -2,14 +2,18 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Coffee } from './../interfaces/coffee.interface';
 import { Pot } from './../interfaces/pot.interface';
 import { Injectable } from '@angular/core';
-import { Observer, ReplaySubject, Observable } from 'rxjs';
+import { ReplaySubject, Observable } from 'rxjs';
 import { DatabaseReference } from '@angular/fire/database/interfaces';
+
+function hasOwn(object: object, key: string): boolean {
+  return Object.prototype.hasOwnProperty.call(object, key);
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class PotService {
-  pots: Pot[];
+  pots: Pot[] = [];
 
   potSubject: ReplaySubject<Pot[]>;
   potObservable: Observable<Pot[]>;
@@ -25,15 +29,36 @@ export class PotService {
 
   listenForPots(): Observable<Pot[]> {
     this.potRef.on('value', snapshot => {
-      const newVal = snapshot.val();
-      this.pots = newVal;
-      this.potSubject.next(newVal);
+      const potsObject = snapshot.val();
+      const potArray = this.formatPots(potsObject);
+      this.pots = potArray;
+      this.potSubject.next(potArray);
     });
     return this.potObservable;
   }
 
-  addPotToDb(newPot: Pot) {
-    this.potRef.push(newPot);
+  formatPots(potObject): Pot[] {
+    const potArray = [];
+    for (const potKey in potObject) {
+      if (hasOwn(potObject, potKey)) {
+        potArray.push({
+          id: potKey,
+          ...potObject[potKey]
+        });
+      }
+    }
+    return potArray;
+  }
+
+  addPotToDb(newPot: Pot): Observable<boolean> {
+    const newNumber = this.pots.length + 1;
+    const numberedPot = { ...newPot, number: newNumber };
+    this.pots = [...this.pots, numberedPot];
+    return Observable.create(observer => {
+      this.potRef.push(numberedPot, error => {
+        observer.next(!error);
+      });
+    });
   }
 
   addCoffeeToPot(coffee: Coffee, potId: string): Coffee {
