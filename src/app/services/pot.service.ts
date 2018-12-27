@@ -3,6 +3,7 @@ import { Coffee } from './../interfaces/coffee.interface';
 import { Pot } from './../interfaces/pot.interface';
 import { Injectable } from '@angular/core';
 import { Observer, ReplaySubject, Observable } from 'rxjs';
+import { DatabaseReference } from '@angular/fire/database/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -13,20 +14,26 @@ export class PotService {
   potSubject: ReplaySubject<Pot[]>;
   potObservable: Observable<Pot[]>;
 
-  private potRef = 'pots';
+  private potPath = 'pots';
+  private potRef: DatabaseReference;
 
   constructor(private db: AngularFireDatabase) {
     this.potSubject = new ReplaySubject<Pot[]>();
     this.potObservable = this.potSubject.asObservable();
+    this.potRef = this.db.database.ref(this.potPath);
   }
 
   listenForPots(): Observable<Pot[]> {
-    this.db.database.ref(this.potRef).on('value', snapshot => {
+    this.potRef.on('value', snapshot => {
       const newVal = snapshot.val();
       this.pots = newVal;
       this.potSubject.next(newVal);
     });
     return this.potObservable;
+  }
+
+  addPotToDb(newPot: Pot) {
+    this.potRef.push(newPot);
   }
 
   addCoffeeToPot(coffee: Coffee, potId: string): Coffee {
