@@ -57,10 +57,6 @@ export class CoffeePageComponent implements OnInit {
 
   ngOnInit() {}
 
-  getPots() {
-    this.potService.listenForPots().subscribe(newpots => (this.pots = newpots));
-  }
-
   addCoffee(newCoffee: Coffee) {
     this.db.database.ref('coffee').push(newCoffee);
   }
