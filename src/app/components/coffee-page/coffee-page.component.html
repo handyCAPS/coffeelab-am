@@ -48,9 +48,9 @@
           <mat-card-title>Pots</mat-card-title>
         </mat-card-header>
         <mat-card-content *ngIf="pots.length">
-          <mat-list>
-            <mat-list-item *ngFor="let pot of pots"
-              >{{ pot.name }} {{ pot.number }}
+          <mat-list class="pot-list">
+            <mat-list-item *ngFor="let pot of pots" class="pot-item">
+              {{ pot.name }} {{ pot.number }}
             </mat-list-item>
           </mat-list>
         </mat-card-content>

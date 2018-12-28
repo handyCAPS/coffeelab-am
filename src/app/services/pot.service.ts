@@ -22,12 +22,16 @@ export class PotService {
   private potRef: DatabaseReference;
 
   constructor(private db: AngularFireDatabase) {
-    this.potSubject = new ReplaySubject<Pot[]>();
+    this.potSubject = new ReplaySubject<Pot[]>(1);
     this.potObservable = this.potSubject.asObservable();
     this.potRef = this.db.database.ref(this.potPath);
+    this.potRef.once('value', snapshot => {
+      this.pots = this.formatPots(snapshot.val());
+    });
   }
 
   listenForPots(): Observable<Pot[]> {
+    this.potSubject.next(this.pots);
     this.potRef.on('value', snapshot => {
       const potsObject = snapshot.val();
       const potArray = this.formatPots(potsObject);

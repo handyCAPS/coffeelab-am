@@ -4,4 +4,5 @@ export class Pot {
   number: number;
   currentCoffee?: Coffee;
   name?: string;
+  lastFilled?: string;  // ISO Date
 }

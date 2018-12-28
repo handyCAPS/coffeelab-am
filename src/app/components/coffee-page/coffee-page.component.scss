@@ -15,3 +15,17 @@
 .add-coffee-button {
   float: right;
 }
+
+.pot-list {
+  display: flex;
+}
+
+.mat-list .pot-item {
+  border: 1px solid #c2c2c2;
+  text-align: center;
+  // padding: 2em;
+
+  &:not(:last-of-type) {
+    margin-right: 2em;
+  }
+}
