@@ -19,8 +19,8 @@ class SortingOptions {
   styleUrls: ['./coffee-page.component.scss']
 })
 export class CoffeePageComponent implements OnInit {
-  private coffees: Coffee[] = [];
-  private pots: Pot[] = [];
+  public coffees: Coffee[] = [];
+  public pots: Pot[] = [];
 
   private coffeeSortingPrefix = 'orderCoffeeBy';
 

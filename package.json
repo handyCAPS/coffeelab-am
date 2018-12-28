@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "hmr": "@Powershell Start-Process 'http://localhost:4200' & ng serve --hmr --configuration=hmr "
+    "hmr": "@Powershell Start-Process 'http://localhost:4200' && ng serve --hmr --configuration=hmr "
   },
   "private": true,
   "dependencies": {
