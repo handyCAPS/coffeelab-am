@@ -55,10 +55,22 @@
             >
               <div class="pot-item-line pot-item-name">{{ pot.name }}</div>
               <div class="pot-item-line pot-item-number">{{ pot.number }}</div>
+              <div
+                *ngIf="pot.currentCoffee"
+                class="pot-item-line pot-item-coffee"
+              >
+                {{ pot.currentCoffee }}
+              </div>
+              <div
+                *ngIf="pot.lastFilled"
+                class="pot-item-line-pot-item-last-filled"
+              >
+                {{ pot.lastFilled | date: 'dd-MMM-yy' }}
+              </div>
             </mat-list-item>
           </mat-list>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions class="pot-list-actions">
           <button mat-mini-fab color="primary" (click)="openPotForm()">
             <mat-icon>add</mat-icon>
           </button>

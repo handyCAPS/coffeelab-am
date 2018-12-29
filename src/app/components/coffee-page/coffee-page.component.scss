@@ -55,3 +55,7 @@ $pot-colors: #fffedf #dfba69 #5a2e2e #2a2c31;
   text-shadow: 1px 1px 3px rgba(white, 0.7);
 }
 
+.pot-list-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
