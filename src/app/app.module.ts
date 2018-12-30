@@ -28,6 +28,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { PotFormComponent } from './components/pot-form/pot-form.component';
 import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
+import { PotItemComponent } from './components/pot-item/pot-item.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CoffeeItemComponent } from './components/coffee-item/coffee-item.compon
     CoffeeDetailComponent,
     CoffeeFormComponent,
     PotFormComponent,
-    CoffeeItemComponent
+    CoffeeItemComponent,
+    PotItemComponent
   ],
   imports: [
     BrowserModule,

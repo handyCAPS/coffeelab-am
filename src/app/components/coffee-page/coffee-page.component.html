@@ -48,27 +48,13 @@
           <mat-card-title>Pots</mat-card-title>
         </mat-card-header>
         <mat-card-content *ngIf="pots.length">
-          <mat-list class="pot-list">
-            <mat-list-item
-              *ngFor="let pot of pots; let idx = index"
-              class="pot-item pot-item-{{ idx }}"
-            >
-              <div class="pot-item-line pot-item-name">{{ pot.name }}</div>
-              <div class="pot-item-line pot-item-number">{{ pot.number }}</div>
-              <div
-                *ngIf="pot.currentCoffee"
-                class="pot-item-line pot-item-coffee"
-              >
-                {{ pot.currentCoffee }}
-              </div>
-              <div
-                *ngIf="pot.lastFilled"
-                class="pot-item-line-pot-item-last-filled"
-              >
-                {{ pot.lastFilled | date: 'dd-MMM-yy' }}
-              </div>
-            </mat-list-item>
-          </mat-list>
+          <div class="pot-list">
+              <app-pot-item
+                *ngFor="let pot of pots; let idx = index"
+                class="pot-item pot-item-{{ idx }}"
+                [pot]="pot"
+              ></app-pot-item>
+           </div>
         </mat-card-content>
         <mat-card-actions class="pot-list-actions">
           <button mat-mini-fab color="primary" (click)="openPotForm()">

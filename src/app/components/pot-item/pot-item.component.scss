@@ -1,0 +1,21 @@
+
+
+.pot-item-line {
+  &:not(:last-of-type) {
+    margin-bottom: 0.3em;
+  }
+}
+
+.pot-item-name {
+  font-size: 0.8em;
+}
+
+.pot-item-number {
+  font-size: 3em;
+  text-shadow: 1px 1px 3px rgba(white, 0.7);
+}
+
+.pot-list-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
