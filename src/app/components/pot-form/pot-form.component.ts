@@ -1,3 +1,5 @@
+import { Coffee } from './../../interfaces/coffee.interface';
+import { CoffeeService } from './../../services/coffee.service';
 import { Pot } from './../../interfaces/pot.interface';
 import { Component, OnInit } from '@angular/core';
 import { PotService } from 'src/app/services/pot.service';
@@ -10,12 +12,15 @@ import { MatDialogRef } from '@angular/material';
 })
 export class PotFormComponent implements OnInit {
   pot: Pot;
+  coffees: Coffee[];
 
   constructor(
     private potService: PotService,
+    private coffeeService: CoffeeService,
     public dialogRef: MatDialogRef<PotFormComponent>
   ) {
     this.pot = new Pot();
+    this.coffees = this.coffeeService.getCoffees();
   }
 
   ngOnInit() {}

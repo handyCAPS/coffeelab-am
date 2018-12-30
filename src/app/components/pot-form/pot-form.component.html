@@ -1,7 +1,14 @@
 <div class="pot-form">
-  <form #potForm="ngForm" (submit)="handleFormSubmit($event)">
-    <mat-form-field>
+  <form class="form pot-form-form" #potForm="ngForm" (submit)="handleFormSubmit($event)">
+    <mat-form-field appearance="standard">
       <input matInput [(ngModel)]="pot.name" name="name" placeholder="Naam">
+    </mat-form-field>
+    <mat-form-field appearance="standard">
+      <mat-select placeholder="Coffee" [(ngModel)]="pot.currentCoffee" name="currentCoffee">
+        <mat-option *ngFor="let currentCoffee of coffees" [value]="currentCoffee.name">
+          {{currentCoffee.name}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
     <footer>
       <button mat-raised-button color="primary">Opslaan</button>

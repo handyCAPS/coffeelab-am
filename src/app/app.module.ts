@@ -15,7 +15,8 @@ import {
   MatListModule,
   MatDialogModule,
   MatFormFieldModule,
-  MatInputModule
+  MatInputModule,
+  MatSelectModule
 } from '@angular/material';
 import { CoffeePageComponent } from './components/coffee-page/coffee-page.component';
 import { CoffeeService } from './services/coffee.service';
@@ -51,7 +52,8 @@ import { CoffeeItemComponent } from './components/coffee-item/coffee-item.compon
     MatListModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   providers: [CoffeeService, PotService],
   bootstrap: [AppComponent],
