@@ -1,3 +1,4 @@
+import { PotFormDialogComponent } from './../pot-form-dialog/pot-form-dialog.component';
 import { PotFormComponent } from './../pot-form/pot-form.component';
 import { PotService } from './../../services/pot.service';
 import { Pot } from './../../interfaces/pot.interface';
@@ -96,7 +97,7 @@ export class CoffeePageComponent implements OnInit {
 
   openPotForm() {
     this.dialog
-      .open(PotFormComponent, {
+      .open(PotFormDialogComponent, {
         width: '600px'
       })
       .afterClosed()

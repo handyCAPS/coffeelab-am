@@ -1,9 +1,8 @@
 import { Coffee } from './../../interfaces/coffee.interface';
 import { CoffeeService } from './../../services/coffee.service';
 import { Pot } from './../../interfaces/pot.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PotService } from 'src/app/services/pot.service';
-import { MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-pot-form',
@@ -11,15 +10,16 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./pot-form.component.scss']
 })
 export class PotFormComponent implements OnInit {
+  @Input() loadedPot: Pot;
+  @Output() savedToDb = new EventEmitter<boolean>();
   pot: Pot;
   coffees: Coffee[];
 
   constructor(
     private potService: PotService,
     private coffeeService: CoffeeService,
-    public dialogRef: MatDialogRef<PotFormComponent>
   ) {
-    this.pot = new Pot();
+    this.pot = this.loadedPot ? this.loadedPot : new Pot();
     this.coffees = this.coffeeService.getCoffees();
   }
 
@@ -30,7 +30,7 @@ export class PotFormComponent implements OnInit {
     this.potService
       .addPotToDb({ ...this.pot, number: -1 })
       .subscribe(hasError => {
-        this.dialogRef.close(hasError);
+        this.savedToDb.emit(hasError);
       });
   }
 }

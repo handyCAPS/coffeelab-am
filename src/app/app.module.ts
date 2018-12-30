@@ -29,6 +29,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { PotFormComponent } from './components/pot-form/pot-form.component';
 import { CoffeeItemComponent } from './components/coffee-item/coffee-item.component';
 import { PotItemComponent } from './components/pot-item/pot-item.component';
+import { PotFormDialogComponent } from './components/pot-form-dialog/pot-form-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PotItemComponent } from './components/pot-item/pot-item.component';
     CoffeeFormComponent,
     PotFormComponent,
     CoffeeItemComponent,
-    PotItemComponent
+    PotItemComponent,
+    PotFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,6 @@ import { PotItemComponent } from './components/pot-item/pot-item.component';
   ],
   providers: [CoffeeService, PotService],
   bootstrap: [AppComponent],
-  entryComponents: [CoffeeFormComponent, PotFormComponent]
+  entryComponents: [CoffeeFormComponent, PotFormDialogComponent]
 })
 export class AppModule {}
