@@ -23,9 +23,6 @@ $pot-colors: #fffedf #dfba69 #5a2e2e #2a2c31;
 }
 
 .pot-item {
-  border: 1px solid #c2c2c2;
-  text-align: center;
-  padding: 2em;
   flex-basis: 100%;
   font-size: 1.6rem;
   @for $i from 1 through length($pot-colors) {
@@ -37,4 +34,9 @@ $pot-colors: #fffedf #dfba69 #5a2e2e #2a2c31;
   &:not(:last-of-type) {
     margin-right: 2em;
   }
+}
+
+.pot-list-actions {
+  display: flex;
+  flex-direction: row-reverse;
 }

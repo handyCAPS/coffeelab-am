@@ -2,7 +2,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { Coffee } from './../interfaces/coffee.interface';
 import { Pot } from './../interfaces/pot.interface';
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Observable } from 'rxjs';
+import { ReplaySubject, Observable, from } from 'rxjs';
 import { DatabaseReference } from '@angular/fire/database/interfaces';
 
 function hasOwn(object: object, key: string): boolean {
@@ -14,6 +14,8 @@ function hasOwn(object: object, key: string): boolean {
 })
 export class PotService {
   pots: Pot[] = [];
+
+  potsById: { [key: string]: Pot } = {};
 
   potSubject: ReplaySubject<Pot[]>;
   potObservable: Observable<Pot[]>;
@@ -45,6 +47,7 @@ export class PotService {
     const potArray = [];
     for (const potKey in potObject) {
       if (hasOwn(potObject, potKey)) {
+        // this.potsById[potKey] = potObject;
         potArray.push({
           id: potKey,
           ...potObject[potKey]
@@ -76,5 +79,19 @@ export class PotService {
       return { ...pot };
     });
     return { ...coffee, pot: whatPot };
+  }
+
+  updatePot(newPot: Pot): Observable<any> {
+    this.pots = this.pots.map(pot => {
+      if (pot.id === newPot.id) {
+        return { ...newPot };
+      }
+      return pot;
+    });
+    return from(this.updatePotToDb({ ...newPot }));
+  }
+
+  updatePotToDb(pot: Pot): Promise<any> {
+    return this.potRef.child(pot.id).update(pot);
   }
 }

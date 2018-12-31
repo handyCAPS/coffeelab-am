@@ -1,4 +1,9 @@
-
+.pot-item-item {
+  position: relative;
+  border: 1px solid #c2c2c2;
+  text-align: center;
+  padding: 2em;
+}
 
 .pot-item-line {
   &:not(:last-of-type) {
@@ -15,7 +20,8 @@
   text-shadow: 1px 1px 3px rgba(white, 0.7);
 }
 
-.pot-list-actions {
-  display: flex;
-  flex-direction: row-reverse;
+.pot-item-actions {
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }

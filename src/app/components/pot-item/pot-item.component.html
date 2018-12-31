@@ -1,8 +1,15 @@
-<div class="pot-item-line pot-item-name">{{ pot.name }}</div>
-<div class="pot-item-line pot-item-number">{{ pot.number }}</div>
-<div *ngIf="pot.currentCoffee" class="pot-item-line pot-item-coffee">
-  {{ pot.currentCoffee }}
-</div>
-<div *ngIf="pot.lastFilled" class="pot-item-line-pot-item-last-filled">
-  {{ pot.lastFilled | date: 'dd-MMM-yy' }}
+<div class="pot-item-item">
+	<div class="pot-item-line pot-item-name">{{ pot.name }}</div>
+	<div class="pot-item-line pot-item-number">{{ pot.number }}</div>
+	<div *ngIf="pot.currentCoffee" class="pot-item-line pot-item-coffee">
+	  {{ pot.currentCoffee }}
+	</div>
+	<div *ngIf="pot.lastFilled" class="pot-item-line-pot-item-last-filled">
+	  {{ pot.lastFilled | date: 'dd-MMM-yy' }}
+	</div>
+	<div class="pot-item-actions">
+	  <button mat-icon-button (click)="onOpenEditForm()">
+	    <mat-icon>edit</mat-icon>
+	  </button>
+	</div>
 </div>

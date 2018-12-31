@@ -17,20 +17,33 @@ export class PotFormComponent implements OnInit {
 
   constructor(
     private potService: PotService,
-    private coffeeService: CoffeeService,
+    private coffeeService: CoffeeService
   ) {
-    this.pot = this.loadedPot ? this.loadedPot : new Pot();
     this.coffees = this.coffeeService.getCoffees();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.pot = this.loadedPot ? this.loadedPot : new Pot();
+  }
 
   handleFormSubmit(e) {
     e.preventDefault();
+    if (this.loadedPot) {
+      this.updatedDb({ ...this.pot });
+    } else {
+      this.addToDb({ ...this.pot, number: -1 });
+    }
+  }
+
+  addToDb(pot: Pot) {
     this.potService
-      .addPotToDb({ ...this.pot, number: -1 })
-      .subscribe(hasError => {
-        this.savedToDb.emit(hasError);
-      });
+      .addPotToDb(pot)
+      .subscribe(hasError => this.savedToDb.emit(hasError));
+  }
+
+  updatedDb(pot: Pot) {
+    this.potService
+      .updatePot(pot)
+      .subscribe(hasError => this.savedToDb.emit(hasError));
   }
 }
