@@ -27,7 +27,7 @@ $pot-colors: #fffedf #dfba69 #5a2e2e #2a2c31;
   font-size: 1.6rem;
   @for $i from 1 through length($pot-colors) {
     &:nth-of-type(#{$i}) {
-      background-color: nth($pot-colors, $i);
+      background-color: rgba(nth($pot-colors, $i), 0.3);
     }
   }
 
