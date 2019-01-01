@@ -1,5 +1,5 @@
 import { Pot } from './../interfaces/pot.interface';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { hasOwn } from './../helpers';
 import { DatabaseReference } from '@angular/fire/database/interfaces';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -12,6 +12,7 @@ import { Injectable } from '@angular/core';
 export class CoffeeService {
   private coffees: Coffee[] = [];
   private coffeeRef: DatabaseReference;
+  private maxRating = 5;
 
   constructor(private db: AngularFireDatabase) {
     this.coffeeRef = this.db.database.ref('coffee');
@@ -76,16 +77,16 @@ export class CoffeeService {
     return newState;
   }
 
-  public updateCoffeeScore(
-    coffeeId: string,
-    currentScore: number,
-    down: boolean
-  ): void {
-    if ((down && currentScore === 0) || (!down && currentScore === 5)) {
-      return;
+  public getNewCoffeeRating(oldRating: number, newRating: number): number {
+    if (oldRating === newRating) { return newRating; }
+    if (newRating > oldRating) {
+      return Math.min(newRating, this.maxRating);
     }
-    const newScore = down ? currentScore - 1 : currentScore + 1;
-    this.coffeeRef.child(coffeeId).update({ rating: newScore });
+    return Math.max(0, newRating);
+  }
+
+  public updateCoffeeScore(coffee: Coffee): Observable<boolean> {
+    return from(this.coffeeRef.child(coffee.id).update(coffee));
   }
 
   public addPot(pot: Pot): void {

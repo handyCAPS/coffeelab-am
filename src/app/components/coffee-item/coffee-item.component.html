@@ -5,26 +5,12 @@
 	    <mat-card-subtitle>{{ coffee.store }}</mat-card-subtitle>
 	  </mat-card-header>
 	  <mat-card-content>
-      <app-rating [rating]="coffee.rating"></app-rating>
+      <app-rating [rating]="coffee.rating" (newRating)="updateCoffeeRating($event)"></app-rating>
 	    <span class="coffee-date"
-	      >{{ coffee.dateAdded | date: 'dd-MM-yyy' }} === {{ coffee.order }}</span
+	      >{{ coffee.dateAdded | date: 'dd-MM-yyy' }}</span
 	    ></mat-card-content
 	  >
 	  <mat-card-actions class="coffee-actions">
-	    <button
-	      mat-mini-fab
-	      color="primary"
-	      (click)="updateCoffeeScore(coffee.id, coffee.rating, false)"
-	    >
-	      <mat-icon>add</mat-icon>
-	    </button>
-	    <button
-	      mat-mini-fab
-	      color="primary"
-	      (click)="updateCoffeeScore(coffee.id, coffee.rating, true)"
-	    >
-	      <mat-icon>remove</mat-icon>
-	    </button>
 	    <button
 	      mat-raised-button
 	      color="accent"

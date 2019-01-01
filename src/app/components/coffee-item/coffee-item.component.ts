@@ -11,16 +11,18 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class CoffeeItemComponent implements OnInit {
   @Input() coffee: Coffee;
 
-  constructor(private coffeeService: CoffeeService, private db: AngularFireDatabase) {}
+  constructor(
+    private coffeeService: CoffeeService,
+    private db: AngularFireDatabase
+  ) {}
 
   ngOnInit() {}
 
-  updateCoffeeScore(
-    coffeeId: string,
-    currentScore: number,
-    down: boolean
-  ): void {
-    this.coffeeService.updateCoffeeScore(coffeeId, currentScore, down);
+  updateCoffeeRating(newRating: number): void {
+    const updatedCoffee = { ...this.coffee, rating: newRating };
+    this.coffeeService
+      .updateCoffeeScore(updatedCoffee)
+      .subscribe(result => console.log('score result', result));
   }
 
   removeCoffee(coffeeId: string): void {
