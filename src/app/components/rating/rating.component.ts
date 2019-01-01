@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-rating',
@@ -7,21 +7,36 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RatingComponent implements OnInit {
   @Input() rating: number;
+  @Output() newRating = new EventEmitter<number>();
 
   ratingArray: number[];
-  starsLeftArray = [0, 1, 2, 3, 4];
+  starsLeftArray = [1, 2, 3, 4, 5];
 
   constructor() {}
 
   ngOnInit() {
+    this.setOpenAndClosedStars();
+  }
+
+  setOpenAndClosedStars() {
+    this.starsLeftArray = [1, 2, 3, 4, 5];
     if (typeof this.rating !== undefined) {
       this.ratingArray = [];
-      for (let i = 0; i < this.rating; i++) {
+      for (let i = 1; i < this.rating + 1; i++) {
         this.ratingArray.push(i);
       }
       this.starsLeftArray = this.starsLeftArray.filter(num => {
         return this.ratingArray.indexOf(num) === -1;
       });
     }
+  }
+
+  handleClick(starIndex: number) {
+    if (starIndex === this.rating) {
+      return;
+    }
+    this.rating = starIndex;
+    this.setOpenAndClosedStars();
+    this.newRating.emit(starIndex);
   }
 }
