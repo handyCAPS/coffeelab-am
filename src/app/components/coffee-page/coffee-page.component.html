@@ -12,7 +12,7 @@
     <mat-icon>sort</mat-icon>
   </button>
 </div>
-<div class="coffee">
+<div class="coffee" *ngIf="coffees && pots" [@fadeInOut]>
   <div class="coffee-items">
     <app-coffee-item
       *ngFor="let coffee of coffees"

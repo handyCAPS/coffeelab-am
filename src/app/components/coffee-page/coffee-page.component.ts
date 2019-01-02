@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MatDialog } from '@angular/material';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { fadeInOut } from 'src/app/animations/fade-in-out';
 
 class SortingOptions {
   options: 'Rating' | 'Date' | 'Order';
@@ -17,7 +18,8 @@ class SortingOptions {
 @Component({
   selector: 'app-coffee-page',
   templateUrl: './coffee-page.component.html',
-  styleUrls: ['./coffee-page.component.scss']
+  styleUrls: ['./coffee-page.component.scss'],
+  animations: [fadeInOut]
 })
 export class CoffeePageComponent implements OnInit {
   public coffees: Coffee[] = [];
