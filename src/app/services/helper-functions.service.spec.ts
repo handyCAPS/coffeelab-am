@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { HelperFunctionsService } from './helper-functions.service';
 
-fdescribe('HelperFunctionsService', () => {
+describe('HelperFunctionsService', () => {
   let service: HelperFunctionsService;
   beforeEach(() => TestBed.configureTestingModule({}));
 

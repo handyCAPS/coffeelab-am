@@ -7,28 +7,53 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class RatingComponent implements OnInit {
   @Input() rating: number;
+  @Input() maxRating: number;
   @Output() newRating = new EventEmitter<number>();
 
-  ratingArray: number[];
-  starsLeftArray = [1, 2, 3, 4, 5];
+  ratingArray: number[] = [];
+  starsLeftArray = [];
 
-  constructor() {}
+  constructor() {
+    this.ratingArray = [];
+    this.starsLeftArray = [];
+  }
 
   ngOnInit() {
+    if (typeof this.maxRating === 'undefined') {
+      this.maxRating = 5;
+    }
+    if (typeof this.rating === 'undefined') {
+      this.rating = 5;
+    }
+    this.rating = Math.min(this.rating, this.maxRating);
     this.setOpenAndClosedStars();
   }
 
   setOpenAndClosedStars() {
-    this.starsLeftArray = [1, 2, 3, 4, 5];
-    if (typeof this.rating !== undefined) {
-      this.ratingArray = [];
-      for (let i = 1; i < this.rating + 1; i++) {
-        this.ratingArray.push(i);
-      }
-      this.starsLeftArray = this.starsLeftArray.filter(num => {
-        return this.ratingArray.indexOf(num) === -1;
-      });
+    const starObject = this.getOpenAndClosedStars(this.rating);
+    this.starsLeftArray = starObject.open;
+    this.ratingArray = starObject.closed;
+  }
+
+  getOpenAndClosedStars(rating: number): { open: number[]; closed: number[] } {
+    const resultObject = {
+      open: [],
+      closed: []
+    };
+
+    for (let i = 1; i < rating + 1; i++) {
+      resultObject.closed.push(i);
     }
+
+    const starsLeft = this.maxRating - rating;
+
+    if (starsLeft > 0) {
+      for (let i = rating; i < this.maxRating; i++) {
+        resultObject.open.push(i + 1);
+      }
+    }
+
+    return resultObject;
   }
 
   handleClick(starIndex: number) {
