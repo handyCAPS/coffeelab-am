@@ -43,25 +43,11 @@
       </mat-card-actions>
     </mat-card>
     <div class="coffee-pots">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>Pots</mat-card-title>
-        </mat-card-header>
-        <mat-card-content *ngIf="pots.length">
-          <div class="pot-list">
-              <app-pot-item
-                *ngFor="let pot of pots; let idx = index"
-                class="pot-item pot-item-{{ idx }}"
-                [pot]="pot"
-              ></app-pot-item>
-           </div>
-        </mat-card-content>
-        <mat-card-actions class="pot-list-actions">
-          <button mat-mini-fab color="primary" (click)="openPotForm()">
-            <mat-icon>add</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
+      <app-coffee-list
+        *ngIf="pots"
+        [pots]="pots"
+        (plusClicked)="openCoffeeForm()"
+      ></app-coffee-list>
     </div>
   </div>
 </div>

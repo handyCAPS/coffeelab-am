@@ -31,6 +31,7 @@ import { CoffeeItemComponent } from './components/coffee-item/coffee-item.compon
 import { PotItemComponent } from './components/pot-item/pot-item.component';
 import { PotFormDialogComponent } from './components/pot-form-dialog/pot-form-dialog.component';
 import { RatingComponent } from './components/rating/rating.component';
+import { PotListComponent } from './components/pot-list/pot-list.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { RatingComponent } from './components/rating/rating.component';
     CoffeeItemComponent,
     PotItemComponent,
     PotFormDialogComponent,
-    RatingComponent
+    RatingComponent,
+    PotListComponent
   ],
   imports: [
     BrowserModule,
