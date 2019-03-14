@@ -1,0 +1,30 @@
+
+$pot-colors: #fffedf #dfba69 #5a2e2e #2a2c31;
+
+.pot-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pot-item {
+  flex-basis: 100%;
+  font-size: 1.6rem;
+  @for $i from 1 through length($pot-colors) {
+    &:nth-of-type(#{$i}) {
+      background-color: rgba(nth($pot-colors, $i), 0.3);
+    }
+  }
+
+  &:not(:last-of-type) {
+    margin-right: 2em;
+  }
+}
+
+.pot-list-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.pot-item {
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.17);
+}

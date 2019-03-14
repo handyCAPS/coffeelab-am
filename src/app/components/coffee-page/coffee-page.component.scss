@@ -1,7 +1,5 @@
 @import '../../../scss/utilities/helpers';
 
-$pot-colors: #fffedf #dfba69 #5a2e2e #2a2c31;
-
 .mat-card {
   margin-bottom: 2rem;
   @extend .clearfix;
@@ -10,37 +8,16 @@ $pot-colors: #fffedf #dfba69 #5a2e2e #2a2c31;
 .coffee {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
 }
 
 .add-coffee-button {
   float: right;
 }
 
-.pot-list {
-  display: flex;
-  justify-content: space-between;
-}
-
-.pot-item {
-  flex-basis: 100%;
-  font-size: 1.6rem;
-  @for $i from 1 through length($pot-colors) {
-    &:nth-of-type(#{$i}) {
-      background-color: rgba(nth($pot-colors, $i), 0.3);
-    }
-  }
-
-  &:not(:last-of-type) {
-    margin-right: 2em;
-  }
-}
-
-.pot-list-actions {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.pot-item {
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.17);
+.coffee-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(24em, 1fr));
+  grid-template-rows: auto;
+  grid-gap: 1rem;
 }
